@@ -5,7 +5,7 @@
 - smex : M-x 했을 때 서제스트를 지원한다.
 - paredit : Clojure/Lisp에서 에디팅 할때 괄호의 짝을 맞춰준다.
 - clojure-mode : 클로저 들여쓰기와 문법 하이라이트등을 지원한다.
-- projectile : 프로젝트에 파일 찾아 열기/검색/테스트 실행등을 지원한다. 
+- projectile : 프로젝트에 파일 찾아 열기/검색/테스트 실행등을 지원한다.
 - rainbow-delimiters : Clojure/Lisp에서 괄호의 단계별로 다른 색으로 표시해서 가독성을 높여준다.
 - idle-highlight-mode : 현재 커서가 있는 단어와 같은 단어들이 하이라이트 된다.
 - highlight-parentheses : Clojure/Lisp에서 괄호 짝을 하이라이팅 되게 해준다.
@@ -27,32 +27,68 @@
 
 ## 사용법
 ### Cask 설치와 패키지 설치
+
+#### mac
+
 프로젝트를 받고 기본 이맥스 설정 디렉토리를 백업해두고 ~/.emacs.d로 이름을 변경한다.
-```
-git clone https://github.com/eunmin/emacs.d.git
-mv ~/.emacs.d ~/.emacs.d.org
-mv ./emacs.d ~/.emacs.d
-```
-이맥스 패키지 관리자 툴인 Cask를 설치한다.
-```
-brew install cask
-```
-Projectile에서 Ag 검색을 지원하기 위해서 Ag를 설치한다.
-```
-brew install the_silver_searcher
-```
-패키지들을 설치하기 위해서 아래와 같은 커맨드를 입력한다.
-```
-cask install
+```sh
+$ git clone https://github.com/eunmin/emacs.d.git
+$ mv ~/.emacs.d ~/.emacs.d.org
+$ mv ./emacs.d ~/.emacs.d
 ```
 
+이맥스 패키지 관리자 툴인 Cask를 설치한다.
+```sh
+$ brew install cask
+```
+
+Projectile에서 Ag 검색을 지원하기 위해서 Ag를 설치한다.
+```sh
+$ brew install the_silver_searcher
+```
+패키지들을 설치하기 위해서 아래와 같은 커맨드를 입력한다.
+
+```sh
+~/.emacs.d$ cask install
+```
+
+#### CentOS
+
+[이맥스 업데이트]
+
+```sh
+# su -
+# yum install gcc make ncurses-devel
+# yum install giflib-devel libjpeg-devel libtiff-devel
+# cd /usr/local/src
+# wget http://ftp.gnu.org/pub/gnu/emacs/emacs-24.3.tar.gz
+# tar xzvf emacs-24.3.tar.gz
+# cd emacs-24.3
+# ./configure --without-x --without-selinux
+# make
+# make install
+# which emacs /usr/local/bin/emacs
+# emacs --version GNU Emacs 24.3.1
+```
+
+[cask 설치]
+
+```sh
+$ curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
+```
+
+path 추가 : `export PATH="$HOME/.cask/bin:$PATH"`
+
 ### Cider와 Slamhound를 위한 Leiningen 설정
+
 `~/.lein/profiles.clj`에 다음과 같이 Cider 플러그인과 slamhound 관련 설정을 추가한다.
+
 ```
 {:user {:plugins [[cider/cider-nrepl "0.9.0-SNAPSHOT"]
         :dependencies [[slamhound "1.5.5"]]
         :aliases {"slamhound" ["run" "-m" "slam.hound"]}}}
 ```
+
 ## 주요 단축키
 단축키               | 설명
 ---------------------|------------------------------------------------------------
